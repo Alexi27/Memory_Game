@@ -34,7 +34,14 @@ public class view_memory {
 	private JFrame frame;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	Card card = new Card();
-
+	Thread timer = new Thread(new Runnable() {
+		
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			
+		}
+	});
 	/**
 	 * Launch the application.
 	 */
@@ -74,7 +81,7 @@ public class view_memory {
 			public void actionPerformed(ActionEvent e) {
 				Button1.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
 				if (card.getCardReturned() == 0) {card.setCardReturned(1); memoire = Button1;return;}
-				if (card.getCardReturned() == 1) {card.setCardReturned(2);checkSameCard(Button1); return;}
+				if (card.getCardReturned() == 1) {card.setCardReturned(2); timer.start();  checkSameCard(Button1); return;}
 			}
 		});
 		Button11.addActionListener(new ActionListener() {
@@ -100,56 +107,56 @@ public class view_memory {
 		});
 		Button3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Button3.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
+				Button3.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/3.png"));
 				if (card.getCardReturned() == 0) {card.setCardReturned(1); memoire = Button3; return;}
 				if (card.getCardReturned() == 1) {card.setCardReturned(2);checkSameCard(Button3); return;}
 			}
 		});
 		Button33.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Button33.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
+				Button33.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/3.png"));
 				if (card.getCardReturned() == 0) {card.setCardReturned(1); memoire = Button33 ;return;}
 				if (card.getCardReturned() == 1) {card.setCardReturned(2);checkSameCard(Button33); return;}
 			}
 		});
 		Button4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Button44.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
+				Button44.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/4.png"));
 				if (card.getCardReturned() == 0) {card.setCardReturned(1); memoire = Button4; return;}
 				if (card.getCardReturned() == 1) {card.setCardReturned(2);checkSameCard(Button4); return;}
 			}
 		});
 		Button44.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Button44.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
+				Button44.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/4.png"));
 				if (card.getCardReturned() == 0) {card.setCardReturned(1); memoire = Button44; return;}
 				if (card.getCardReturned() == 1) {card.setCardReturned(2);checkSameCard(Button44); return;}
 			}
 		});
 		Button5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Button5.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
+				Button5.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/5.png"));
 				if (card.getCardReturned() == 0) {card.setCardReturned(1); memoire = Button5; return;}
 				if (card.getCardReturned() == 1) {card.setCardReturned(2);checkSameCard(Button5); return;}
 			}
 		});
 		Button55.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Button55.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
+				Button55.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/5.png"));
 				if (card.getCardReturned() == 0) {card.setCardReturned(1); memoire = Button55; return;}
 				if (card.getCardReturned() == 1) {card.setCardReturned(2);checkSameCard(Button55); return;}
 			}
 		});
 		Button6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Button6.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
+				Button6.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/6.png"));
 				if (card.getCardReturned() == 0) {card.setCardReturned(1); memoire = Button6; return;}
 				if (card.getCardReturned() == 1) {card.setCardReturned(2);checkSameCard(Button6); return;}
 			}
 		});
 		Button66.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Button66.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
+				Button66.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/6.png"));
 				if (card.getCardReturned() == 0) {card.setCardReturned(1); memoire = Button66;return;}
 				if (card.getCardReturned() == 1) {card.setCardReturned(2); checkSameCard(Button66);return;}
 			}
@@ -171,8 +178,8 @@ public class view_memory {
 	}
 
 	private JButton random(double min, double max) {
-	    int i = (int) (min + Math.random() * (max - min));
-	    if (i==1 ) return Button1;
+	    int i = (int) (min + Math.random() * (max - min)); 
+	    if (i==1) return Button1;
 	    if (i==2) return Button11;
 	    if (i==3) return Button2;
 	    if (i==4) return Button22;
@@ -186,6 +193,7 @@ public class view_memory {
 	    if (i==12) return Button66;
 		return null;
 }
+	
 	private void randomCard() {
 	frame.getContentPane().add(random(1,12), "cell 0 1");
 	frame.getContentPane().add(random(1,12), "cell 0 2");
@@ -213,15 +221,15 @@ public class view_memory {
 	}
 	private void win() {Button1.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
 	Button11.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
-	Button2.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
-	Button22.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
-	Button3.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
-	Button33.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
-	Button4.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
-	Button44.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
-	Button5.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
-	Button55.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
-	Button6.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
-	Button66.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/1.png"));
+	Button2.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/2.png"));
+	Button22.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/2.png"));
+	Button3.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/3.png"));
+	Button33.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/3.png"));
+	Button4.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/4.png"));
+	Button44.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/4.png"));
+	Button5.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/5.png"));
+	Button55.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/5.png"));
+	Button6.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/6.png"));
+	Button66.setIcon(new ImageIcon("/home/alexi/eclipse-workspace/memory_game/src/6.png"));
 	}
 }
